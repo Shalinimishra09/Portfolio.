@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shalini Mishra — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root{
+      --bg:#ffffff;
+      --deep-brown:#5A3825; /* primary */
+      --gold:#D4AF37;      /* accent */
+      --muted:#7a6a63;
+      --glass: rgba(90,56,37,0.06);
+      --card: #fbf7f5;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:var(--deep-brown);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    .project-screenshot {
+  width: 100%;        
+  max-height: 140px;  
+  object-fit: cover;  
+  border-radius: 10px;
+  margin-bottom: 12px; 
+  display: block;
+}
+
+
+    /* ---------- NAV ---------- */
+    header{position:sticky;top:0;z-index:60;background:transparent;transition:all .35s ease;backdrop-filter:blur(6px)}
+    header.scrolled{background:#fff;box-shadow:0 6px 22px rgba(90,56,37,0.08)}
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{font-weight:700;color:var(--deep-brown);font-size:1.15rem;letter-spacing:0.2px}
+    .nav-links{display:flex;gap:18px}
+    .nav-links a{color:var(--deep-brown);text-decoration:none;font-weight:600;padding:6px 0;position:relative}
+    .nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--gold);transition:width .28s}
+    .nav-links a:hover::after{width:100%}
+
+    /* ---------- HERO ---------- */
+    .hero{display:flex;gap:40px;align-items:center;padding:70px 0}
+    .hero-left{flex:1;min-width:280px}
+    .hero-right{flex:0 0 320px;display:flex;align-items:center;justify-content:center}
+
+    .greeting{display:flex;align-items:baseline;gap:14px}
+    .hello{font-size:2.6rem;font-weight:800;color:var(--deep-brown);margin:0}
+    .typed{font-size:1.05rem;color:var(--muted);height:28px;margin-left:6px}
+
+    .lead{margin-top:18px;color:#6a5a52;max-width:60ch}
+    .cta-row{margin-top:22px;display:flex;gap:14px;align-items:center}
+    .btn-primary{background:var(--deep-brown);color:#fff;padding:10px 18px;border-radius:999px;border:0;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(90,56,37,0.12);transition:transform .18s ease,box-shadow .18s}
+    .btn-primary:hover{transform:translateY(-3px)}
+    .btn-ghost{background:transparent;border:1px solid var(--muted);padding:8px 14px;border-radius:10px;color:var(--deep-brown);font-weight:600}
+
+    .profile-card{background:linear-gradient(180deg,var(--card),#fff);border-radius:18px;padding:12px;box-shadow:0 10px 30px rgba(90,56,37,0.08);width:300px;display:flex;align-items:center;flex-direction:column}
+    .profile-img{width:180px;height:180px;border-radius:50%;overflow:hidden;border:6px solid var(--gold);background:#eee}
+    .profile-img img{width:100%;height:100%;object-fit:cover;display:block}
+    .profile-caption{margin-top:12px;color:var(--muted);font-weight:600}
+
+    /* ---------- SECTIONS ---------- */
+    section{padding:60px 0}
+    h2.section-title{font-size:1.6rem;margin:0 0 18px;color:var(--deep-brown);font-weight:700}
+    p.lead-2{color:#6a5a52;max-width:70ch;margin:0 auto}
+
+    /* ---------- ABOUT ---------- */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+    .about-card{background:var(--glass);padding:22px;border-radius:12px;border:1px solid rgba(90,56,37,0.06)}
+
+    /* ---------- SKILLS ---------- */
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px}
+    .skill{background:rgba(255,255,255,0.9);border-radius:12px;padding:14px;border:1px solid rgba(90,56,37,0.06);box-shadow:0 6px 18px rgba(90,56,37,0.04);display:flex;flex-direction:column;gap:10px}
+    .skill .title{font-weight:700;color:var(--deep-brown)}
+    .progress{height:8px;background:#efe7e3;border-radius:999px;overflow:hidden}
+    .progress > span{display:block;height:100%;background:var(--gold);width:0%;transition:width 1.2s cubic-bezier(.2,.9,.2,1)}
+
+    /* ---------- PROJECTS ---------- */
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+    .project-card{background:linear-gradient(180deg,#fff,#fbf8f7);border-radius:12px;padding:14px;border:1px solid rgba(90,56,37,0.06);box-shadow:0 10px 30px rgba(90,56,37,0.06);transition:transform .25s ease,box-shadow .25s}
+    .project-card:hover{transform:translateY(-8px);box-shadow:0 18px 48px rgba(90,56,37,0.12)}
+    .project-thumb{height:140px;border-radius:10px;background:linear-gradient(135deg, #f6efe9,#fff);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:600}
+    .project-meta{margin-top:12px}
+
+    /* ---------- CONTACT ---------- */
+    .contact-grid{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+    .contact-card{padding:14px 18px;border-radius:12px;border:1px solid rgba(90,56,37,0.06);background:linear-gradient(180deg,#fff,#fbf8f7);min-width:180px;text-align:center}
+
+    /* ---------- FOOTER ---------- */
+    footer{padding:28px 0;text-align:center;color:var(--muted);border-top:1px solid rgba(90,56,37,0.04)}
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:900px){.about-grid{grid-template-columns:1fr}.hero{flex-direction:column-reverse}.hero-right{width:100%}.hello{font-size:2rem}}
+
+    /* ---------- Entry animations (will be triggered by JS) */
+    .reveal{opacity:0;transform:translateY(18px);transition:all .65s cubic-bezier(.2,.9,.2,1)}
+    .reveal.active{opacity:1;transform:none}
+  </style>
+</head>
+<body>
+  <header id="siteHeader">
+    <div class="container">
+      <nav>
+        <div class="brand">Shalini Mishra</div>
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main>
+    <section id="home" class="container hero">
+      <div class="hero-left">
+        <div class="greeting">
+          <h1 class="hello">Hello!</h1>
+          <div class="typed" id="typed"></div>
+        </div>
+        <p class="lead reveal">I’m <strong>Shalini Mishra</strong> — Developer , who builds clean, fast, and delightful web experiences., web apps, and  Designs.</p>
+
+        <div class="cta-row reveal">
+          <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">See Projects</button>
+          <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</button>
+        </div>
+
+        <div class="mt-6 reveal" style="margin-top:28px">
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <div style="padding:8px 10px;border-radius:8px;background:#fff;border:1px solid rgba(90,56,37,0.05);font-weight:600">Available for Internships</div>
+            <div style="padding:8px 10px;border-radius:8px;background:#fff;border:1px solid rgba(90,56,37,0.05);font-weight:600">Open to Relocate</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right reveal">
+        <div class="profile-card">
+          <div class="profile-img" id="profileImg">
+            <!-- Replace the src below with your photo locally when you add it -->
+            <img src="shalini.jpg" alt="photo" />
+          </div>
+          <div class="profile-caption">Shalini Mishra • Developer</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-card reveal">
+          <h2 class="section-title">About Me</h2>
+          <p class="lead-2">I study at St. Xavier's College, Ranchi and am deeply interested in full-stack web development and product design. I know C, C++, Java, JavaScript (ES6+), HTML, CSS, Tailwind CSS, React, Node.js and I enjoy solving DSA problems to keep my problem solving sharp. I also design on Figma and Canva.</p>
+        </div>
+        <div class="reveal">
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+            <div style="background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(90,56,37,0.04)">
+              <strong>Graduation</strong>
+              <div class="muted">B.Sc in Computer Applications</div>
+            </div>
+            <div style="background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(90,56,37,0.04)">
+              <strong>Location</strong>
+              <div class="muted">Ranchi, Jharkhand</div>
+            </div>
+            <div style="background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(90,56,37,0.04)">
+              <strong>Clubs</strong>
+              <div class="muted">Tech & Design</div>
+            </div>
+            <div style="background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(90,56,37,0.04)">
+              <strong>Goal</strong>
+              <div class="muted">Make impactful Software Products</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title reveal">Skills & Expertise</h2>
+        
+
+        <div class="skills-grid" style="margin-top:20px">
+          <!-- Each skill includes a progress bar that animates when visible -->
+          <div class="skill reveal">
+            <div class="title">HTML & CSS</div>
+            <div class="progress" data-value="90"><span></span></div>
+          </div>
+
+          <div class="skill reveal">
+            <div class="title">JavaScript (ES6+)</div>
+            <div class="progress" data-value="85"><span></span></div>
+          </div>
+
+          <div class="skill reveal">
+            <div class="title">React.js</div>
+            <div class="progress" data-value="80"><span></span></div>
+          </div>
+
+          <div class="skill reveal">
+            <div class="title">Node.js</div>
+            <div class="progress" data-value="70"><span></span></div>
+          </div>
+
+          <div class="skill reveal">
+            <div class="title">C++</div>
+            <div class="progress" data-value="75"><span></span></div>
+          </div>
+
+          <div class="skill reveal">
+            <div class="title">Java</div>
+            <div class="progress" data-value="70"><span></span></div>
+          </div>
+
+          <div class="skill reveal">
+            <div class="title">Tailwind CSS</div>
+            <div class="progress" data-value="78"><span></span></div>
+          </div>
+
+          <div class="skill reveal">
+            <div class="title">Figma & Canva</div>
+            <div class="progress" data-value="82"><span></span></div>
+          </div>
+
+          <div class="skill reveal">
+            <div class="title">Git & GitHub</div>
+            <div class="progress" data-value="80"><span></span></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title reveal"> Projects</h2>
+       
+
+        <div class="projects-grid" style="margin-top:20px">
+          <div class="project-card reveal ">
+             <a href="" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit;"></a>
+            <img src="port.png" alt="port"class="project-screenshot">
+            
+            <div class="project-meta">
+              <strong>Portfolio Website</strong>
+              <div style="color:var(--muted);font-size:.95rem">HTML/ Tailwind / JS</div>
+            </div>
+          </div>
+
+          <div class="project-card reveal">
+            
+            <img src="muesum.png" alt="muesum"class="project-screenshot">
+            <div class="project-meta">
+                 <a href="https://shalinimishra09.github.io/chat-museum/" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit;">    <strong>Museum Chat-bot</strong></a>
+          
+              <div style="color:var(--muted);font-size:.95rem">Reactjs based frontend Website</div>
+            </div>
+          </div>
+
+          <div class="project-card reveal">
+            
+            <img src="game.png" alt="game" class="project-screenshot">
+     
+            <div class="project-meta">
+                <a href="https://shalinimishra09.github.io/memory-game/" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit;"> <strong>Memory Match</strong></a>
+             
+              <div style="color:var(--muted);font-size:.95rem">Vanilla JS game</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+ 
+
+<section id="contact">
+      <div class="container">
+        <h2 class="section-title reveal">Contact</h2>
+        <p class="lead-2 reveal">I’m open to internships and full-time roles — feel free to reach out.</p>
+
+        <div class="contact-grid reveal" style="margin-top:20px">
+          <div class="contact-card">
+            
+            <a href="https://github.com/Shalinimishra09" target="_blank" style="color:var(--deep-brown);text-decoration:none">Github</a>
+          </div>
+          <div class="contact-card">
+            
+            <a href="https://www.linkedin.com/in/shalinimishra9/" target="_blank" style="color:var(--deep-brown);text-decoration:none">linkedin</a>
+          </div>
+          
+        </div>
+
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div style="height:6px;background:linear-gradient(90deg,var(--gold),rgba(212,175,55,0.6));border-radius:4px;margin-bottom:12px"></div>
+      © 2025 Shalini Mishra — Built with care • Available for placements & internships
+    </div>
+  </footer>
+
+  <script>
+    /* Typing effect (simple, loops through phrases) */
+    (function(){
+      const el = document.getElementById('typed');
+      const phrases = [" Web Developer","Full‑Stack enthusiast"," Problem Solver","Graphic Designer"];
+      let pIndex = 0, charIndex = 0, forward = true;
+
+      function tick(){
+        const current = phrases[pIndex];
+        if(forward){
+          charIndex++;
+          el.textContent = current.slice(0,charIndex);
+          if(charIndex === current.length){
+            forward=false;setTimeout(tick,1400);return;
+          }
+        } else {
+          charIndex--;
+          el.textContent = current.slice(0,charIndex);
+          if(charIndex===0){forward=true;pIndex=(pIndex+1)%phrases.length}
+        }
+        setTimeout(tick, forward?80:40);
+      }
+      tick();
+    })();
+
+    /* Navbar scroll effect */
+    const hdr = document.getElementById('siteHeader');
+    window.addEventListener('scroll',()=>{ if(window.scrollY>20) hdr.classList.add('scrolled'); else hdr.classList.remove('scrolled'); });
+
+    /* Reveal on scroll */
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('active'); io.unobserve(e.target); } });
+    },{threshold:0.15});
+    reveals.forEach(r=>io.observe(r));
+
+    /* Skill progress animation when visible */
+    const progressBars = document.querySelectorAll('.progress');
+    const pIo = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const el = entry.target.querySelector('span');
+          const val = entry.target.getAttribute('data-value') || '60';
+          el.style.width = val + '%';
+          pIo.unobserve(entry.target);
+        }
+      });
+    },{threshold:0.25});
+    progressBars.forEach(pb=>pIo.observe(pb));
+
+  </script>
+</body>
+</html>
